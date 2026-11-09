@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hassan Adil Hassan · Data Analyst & Data Scientist</title>
+<style>
+  :root {
+    --bg: #0b0f1a; --surface: #131a2a; --surface-2: #1a2338;
+    --text: #e6ebf5; --muted: #8b96ad; --accent: #7c5cff; --accent-2: #20d5c4;
+    --border: rgba(255,255,255,0.08); --radius: 16px;
+    box-sizing: border-box;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: rgba(11,15,26,0.8); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .container { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .logo { font-weight: 700; letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 22px; font-size: 0.95rem; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+  .hero { padding: 96px 0 72px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: -40% -10% auto auto; width: 620px; height: 620px;
+    background: radial-gradient(circle, rgba(124,92,255,0.35), transparent 65%); pointer-events: none;
+  }
+  .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--accent-2); font-size: 0.85rem; margin-bottom: 20px;
+  }
+  h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.1; margin: 0 0 18px; letter-spacing: -0.03em; }
+  .gradient-text {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lead { font-size: 1.15rem; color: var(--muted); max-width: 640px; margin: 0 0 32px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    padding: 12px 22px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+    border: 1px solid var(--border); color: var(--text); background: var(--surface);
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); text-decoration: none; background: var(--surface-2); }
+  .btn.primary { background: linear-gradient(90deg, var(--accent), #5b7cff); border: none; color: #fff; }
+
+  section { padding: 72px 0; }
+  .section-title { font-size: 1.9rem; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .section-sub { color: var(--muted); margin: 0 0 36px; }
+
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; }
+  .card h3 { margin: 0 0 14px; font-size: 1rem; color: var(--accent-2); }
+  .muted { color: var(--muted); }
+  .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+  .timeline strong { display: block; font-size: 1.02rem; }
+  .timeline span { color: var(--muted); font-size: 0.9rem; }
+
+  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+  .project {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px; display: flex; flex-direction: column; gap: 14px;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .project:hover { transform: translateY(-4px); border-color: rgba(124,92,255,0.5); }
+  .project-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-2); font-weight: 600; }
+  .project h3 { margin: 0; font-size: 1.2rem; }
+  .project p { margin: 0; color: var(--muted); font-size: 0.95rem; flex-grow: 1; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 0.78rem; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
+  .project-links { font-size: 0.9rem; font-weight: 600; }
+
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+
+  .contact { text-align: center; }
+  .contact .lead { margin: 0 auto 28px; }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted);
+    font-size: 0.9rem; text-align: center; padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  }
+
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 14px; font-size: 0.85rem; }
+    .hero { padding: 64px 0 48px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">Hassan Adil Hassan<span style="color:var(--accent-2)">.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="resume.pdf">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">Open to data analyst and data scientist roles</span>
+    <h1>Turning messy data into <span class="gradient-text">decisions people act on</span></h1>
+    <p class="lead">Data analyst and data scientist with 6+ years across product analytics and healthcare. I design A/B tests, build trusted dbt and BigQuery data models, and build LLM-powered tools that let people ask data questions in plain language.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View projects</a>
+      <a class="btn" href="resume.pdf">Download resume</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="card">
+      <h3>About me</h3>
+      <p class="muted" style="margin-top:0">
+        I work across the full analytics loop: framing a question, modeling data in SQL and dbt, analyzing results in Python, and communicating the answer. As an embedded analytics partner for product teams, I define metrics, design and analyze A/B tests and causal studies, and build the KPI dashboards and funnel, cohort, and retention analyses that guide the roadmap.
+      </p>
+      <p class="muted">
+        My earlier work in healthcare shaped how I approach data. I analyzed Medicare Part C and D claims to detect fraud, waste, and abuse, and I ran cohort analyses on public health data. I hold an MPH in Epidemiology and Biostatistics, and I now build LLM applications, including natural language query interfaces and agentic workflows.
+      </p>
+    </div>
+    <div class="card">
+      <h3>Experience</h3>
+      <ul class="timeline">
+        <li><strong>Data Analyst, Product Analytics &amp; Data Science</strong><span>Kooth / Soluna US · 2023 to present (joined 2020 as Junior Data Analyst)</span></li>
+        <li><strong>Data Analyst III</strong><span>Qlarant · 2022 to 2023</span></li>
+        <li><strong>MPH, Epidemiology &amp; Biostatistics</strong><span>University of Illinois Chicago · 2022</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">Featured projects</h2>
+    <p class="section-sub">Built on public datasets, with code and write-ups linked on each card.</p>
+    <div class="projects">
+
+      <article class="project">
+        <span class="project-tag">LLMs · Natural language querying</span>
+        <h3>Natural Language to SQL for E-commerce Data</h3>
+        <p>Turns plain-English business questions into BigQuery SQL, validates each query with a dry run, and returns results with the generated SQL shown. Accuracy is measured against hand-verified answers.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">BigQuery</span><span class="chip">LLM API</span><span class="chip">Streamlit</span></div>
+        <a class="project-links" href="#">View project →</a>
+      </article>
+
+      <article class="project">
+        <span class="project-tag">Agentic AI</span>
+        <h3>Agentic Analytics Assistant</h3>
+        <p>An agent that plans an analysis, runs read-only SQL as tools, checks its own numbers for impossible values, and writes a report. Every tool call is logged to a trace so the reasoning can be reviewed.</p>
+        <div class="chips"><span class="chip">Agents</span><span class="chip">Tool use</span><span class="chip">Python</span><span class="chip">SQL</span></div>
+        <a class="project-links" href="#">View project →</a>
+      </article>
+
+      <article class="project">
+        <span class="project-tag">Experimentation</span>
+        <h3>A/B Test Analysis with a Stakeholder Memo</h3>
+        <p>Checks sample ratio mismatch, computes retention lift with confidence intervals, runs a power analysis, and breaks results down by player segment. The findings are written up as a one-page recommendation.</p>
+        <div class="chips"><span class="chip">Hypothesis testing</span><span class="chip">Bootstrap</span><span class="chip">Power analysis</span><span class="chip">Python</span></div>
+        <a class="project-links" href="#">View project →</a>
+      </article>
+
+      <article class="project">
+        <span class="project-tag">Analytics engineering</span>
+        <h3>dbt Data Models with Quality Tests</h3>
+        <p>Staging and mart models built in dbt on BigQuery, with documented business logic, data quality tests, and a medallion-style layout that turns raw orders and users into trusted gold-layer tables.</p>
+        <div class="chips"><span class="chip">dbt</span><span class="chip">BigQuery</span><span class="chip">SQL</span><span class="chip">Data quality</span></div>
+        <a class="project-links" href="#">View project →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Skills &amp; tools</h2>
+    <p class="section-sub">Where I spend most of my time.</p>
+    <div class="skill-groups">
+      <div class="card">
+        <h3>Programming &amp; data platforms</h3>
+        <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">BigQuery</span><span class="chip">Tableau</span><span class="chip">R</span><span class="chip">SAS</span><span class="chip">Mixpanel</span><span class="chip">AppsFlyer</span></div>
+      </div>
+      <div class="card">
+        <h3>Statistics &amp; experimentation</h3>
+        <div class="chips"><span class="chip">A/B testing</span><span class="chip">Bayesian experimentation</span><span class="chip">Causal inference</span><span class="chip">Logistic regression</span><span class="chip">Survival analysis</span><span class="chip">Retention analysis</span></div>
+      </div>
+      <div class="card">
+        <h3>Analytics engineering &amp; AI</h3>
+        <div class="chips"><span class="chip">dbt</span><span class="chip">Medallion architecture</span><span class="chip">Data quality testing</span><span class="chip">LLMs</span><span class="chip">NL querying</span><span class="chip">AI-assisted analytics</span></div>
+      </div>
+      <div class="card">
+        <h3>Research &amp; healthcare</h3>
+        <div class="chips"><span class="chip">Epidemiology</span><span class="chip">Biostatistics</span><span class="chip">Clinical trial design</span><span class="chip">Survey design</span><span class="chip">REDCap</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Let's talk</h2>
+    <p class="lead">Open to data analyst and data scientist roles. Email is the fastest way to reach me.</p>
+    <a class="btn primary" href="mailto:hassan5198@gmail.com">hassan5198@gmail.com</a>
+    <p style="margin-top:20px"><a href="https://linkedin.com/in/hassan-hassan-657a53155">LinkedIn</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">© <span id="year"></span> Hassan Adil Hassan · Built with plain HTML</div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
