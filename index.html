@@ -99,6 +99,53 @@
     .nav-links { gap: 14px; font-size: 0.85rem; }
     .hero { padding: 64px 0 48px; }
   }
+
+  .sub-heading { font-size: 1.1rem; margin: 48px 0 16px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+  .exp-list { display: grid; gap: 22px; }
+  .exp-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+  .exp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .exp-company { margin: 0; font-size: 1.3rem; letter-spacing: -0.01em; }
+  .exp-role { margin: 4px 0 0; color: var(--accent-2); font-weight: 600; font-size: 0.98rem; }
+  .exp-role-muted { color: var(--muted); font-weight: 500; }
+  .exp-date { font-size: 0.85rem; color: var(--text); white-space: nowrap; background: var(--surface-2); border: 1px solid var(--border); padding: 4px 12px; border-radius: 999px; }
+  .exp-card ul { margin: 18px 0 0; padding-left: 20px; color: var(--muted); font-size: 0.95rem; display: grid; gap: 8px; }
+  .exp-sub { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .exp-sub .exp-role { margin: 0; }
+  .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .mini-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+  .mini-company { margin: 0; font-size: 1rem; }
+
+  .about-p { color: var(--muted); margin: 0 0 16px; }
+  .tagline { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; color: var(--text); }
+  .sub-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent-2); font-weight: 600; margin: 20px 0 6px; }
+  .feature { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--border); }
+  .feature strong { display: block; font-size: .98rem; }
+  .feature span { color: var(--muted); font-size: .88rem; }
+  .icon { width: 40px; height: 40px; border-radius: 10px; background: var(--surface-2); display: grid; place-items: center; color: var(--accent-2); flex-shrink: 0; }
+  .icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+  .left-col { display: grid; gap: 24px; align-content: start; }
+  .about-grid { align-items: start; }
+  .exp-panel { position: sticky; top: 96px; }
+  .tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tile { display: flex; gap: 12px; align-items: flex-start; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .tile strong { display: block; font-size: .95rem; margin-bottom: 2px; }
+  .tile span { color: var(--muted); font-size: .85rem; line-height: 1.45; }
+  .tile-wide { grid-column: 1 / -1; }
+  .tl { position: relative; display: grid; gap: 14px; padding-left: 26px; }
+  .tl::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; background: linear-gradient(var(--accent), var(--accent-2)); }
+  .tl-item { position: relative; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .tl-item::before { content: ""; position: absolute; left: -25px; top: 20px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent-2); }
+  .tl-date { font-size: .78rem; color: var(--accent-2); font-weight: 600; letter-spacing: .02em; }
+  .tl-role { font-weight: 700; font-size: 1rem; margin: 4px 0 2px; line-height: 1.35; }
+  .tl-co { color: var(--muted); font-size: .9rem; }
+  .tl-loc { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: .82rem; margin-top: 8px; }
+  .tl-loc svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  @media (max-width: 760px) {
+    .exp-panel { position: static; }
+    .tile-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -108,6 +155,7 @@
     <div class="logo">Hassan Adil Hassan<span style="color:var(--accent-2)">.</span></div>
     <div class="nav-links">
       <a href="#about">About</a>
+      <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="resume.pdf">Resume</a>
@@ -130,22 +178,61 @@
 
 <section id="about">
   <div class="container about-grid">
-    <div class="card">
+    <div class="left-col">
+      <div class="card">
       <h3>About me</h3>
-      <p class="muted" style="margin-top:0">
-        I work across the full analytics loop: framing a question, modeling data in SQL and dbt, analyzing results in Python, and communicating the answer. As an embedded analytics partner for product teams, I define metrics, design and analyze A/B tests and causal studies, and build the KPI dashboards and funnel, cohort, and retention analyses that guide the roadmap.
-      </p>
-      <p class="muted">
-        My earlier work in healthcare shaped how I approach data. I analyzed Medicare Part C and D claims to detect fraud, waste, and abuse, and I ran cohort analyses on public health data. I hold an MPH in Epidemiology and Biostatistics, and I now build LLM applications, including natural language query interfaces and agentic workflows.
-      </p>
+      <p class="about-p">I’m interested in the space between data, technology, and decision-making. My work is about taking complex problems, figuring out what the data can actually tell us, and turning that into something useful.</p>
+      <p class="about-p">Since joining Kooth in 2020, I’ve grown into a Data Analyst/Scientist on the Analytics team. I’ve worked across Product, Marketing, Service Delivery, and Clinical, partnering with teams to understand user behavior, measure product performance, evaluate new ideas, and make better decisions. I enjoy being involved in the entire process, from figuring out the right question to building the data foundations, doing the analysis, and communicating what it means.</p>
+      <p class="about-p">My background brings together three areas I really enjoy: product analytics and experimentation, statistical analysis and data science, and building reliable data infrastructure. That means everything from designing and evaluating experiments to developing reusable data models, exploring behavioral patterns, and applying statistical methods to real-world problems. More recently, I’ve been exploring how LLMs and agentic workflows can make data more accessible and help automate parts of the analytical process.</p>
+      <p class="about-p">Before moving into product analytics, I worked in healthcare analytics and public health research, including Medicare claims analysis at Qlarant and research at Cook County Health. I also hold an MPH in Epidemiology and Biostatistics. That background has shaped how I approach analytical problems: with an emphasis on good study design, understanding bias, and being thoughtful about what the data can and cannot tell us.</p>
+      <p class="about-p" style="margin-bottom:0">Ultimately, I enjoy working on problems where good analysis can change how a product works, how a team operates, or how a decision gets made.</p>
     </div>
-    <div class="card">
+      <div class="card">
+        <h3>A little about me</h3>
+        <p class="tagline">Data, technology, and better decisions.</p>
+        <p class="muted" style="margin:0 0 18px; font-size:.92rem">I turn complex data and business problems into insights, tools, and decisions that have a practical impact.</p>
+        <p class="sub-label">The work I enjoy</p>
+        <div class="tile-grid">
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/></svg></div><div><strong>Experimentation</strong><span>Testing ideas and measuring impact.</span></div></div>
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><div><strong>Data science</strong><span>Finding patterns and building analytical solutions.</span></div></div>
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div><div><strong>Data engineering</strong><span>Building reliable data foundations.</span></div></div>
+          <div class="tile tile-wide"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-4 4 8 2-4h6"/></svg></div><div><strong>Where it started</strong><span>Healthcare analytics, public health research, and an MPH in Epidemiology &amp; Biostatistics shaped how I think about data, evidence, and uncertainty.</span></div></div>
+        </div>
+        <div class="stat-row">
+          <span class="chip">6+ years in analytics</span>
+          <span class="chip">MPH · Epidemiology &amp; Biostatistics</span>
+          <span class="chip">Product Analytics &amp; Data Science</span>
+        </div>
+      </div>
+    </div>
+    <div class="card exp-panel" id="experience">
       <h3>Experience</h3>
-      <ul class="timeline">
-        <li><strong>Data Analyst, Product Analytics &amp; Data Science</strong><span>Kooth / Soluna US · 2023 to present (joined 2020 as Junior Data Analyst)</span></li>
-        <li><strong>Data Analyst III</strong><span>Qlarant · 2022 to 2023</span></li>
-        <li><strong>MPH, Epidemiology &amp; Biostatistics</strong><span>University of Illinois Chicago · 2022</span></li>
-      </ul>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-date">2023 to present · joined 2020 as Junior Data Analyst</div>
+          <div class="tl-role">Data Analyst, Product Analytics &amp; Data Science</div>
+          <div class="tl-co">Kooth / Soluna US</div>
+          <div class="tl-loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Chicago, IL</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2022 to 2023</div>
+          <div class="tl-role">Data Analyst III</div>
+          <div class="tl-co">Qlarant</div>
+          <div class="tl-loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Remote</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2022</div>
+          <div class="tl-role">MPH, Epidemiology &amp; Biostatistics</div>
+          <div class="tl-co">University of Illinois Chicago</div>
+          <div class="tl-loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Chicago, IL</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">May 2020</div>
+          <div class="tl-role">BA, Medicine, Health, and Society</div>
+          <div class="tl-co">Vanderbilt University</div>
+          <div class="tl-loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Nashville, TN</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
