@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hassan Adil Hassan, data analyst and data scientist. Experimentation, SQL and dbt data models, Python analytics, and LLM-powered natural language querying.">
+<meta name="author" content="Hassan Adil Hassan">
+<meta property="og:title" content="Hassan Adil Hassan · Data Analyst & Data Scientist">
+<meta property="og:description" content="Experimentation, SQL and dbt data models, Python analytics, and natural language querying with LLMs.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <title>Hassan Adil Hassan · Data Analyst & Data Scientist</title>
 <style>
   :root {
@@ -20,6 +26,7 @@
   }
   a { color: var(--accent-2); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
   .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
   nav {
@@ -62,13 +69,12 @@
   .section-title { font-size: 1.9rem; letter-spacing: -0.02em; margin: 0 0 8px; }
   .section-sub { color: var(--muted); margin: 0 0 36px; }
 
-  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start; }
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; }
   .card h3 { margin: 0 0 14px; font-size: 1rem; color: var(--accent-2); }
   .muted { color: var(--muted); }
-  .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
-  .timeline strong { display: block; font-size: 1.02rem; }
-  .timeline span { color: var(--muted); font-size: 0.9rem; }
+  .left-col { display: grid; gap: 24px; align-content: start; }
+  .exp-panel { position: sticky; top: 96px; }
 
   .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
   .project {
@@ -83,6 +89,8 @@
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { font-size: 0.78rem; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
   .project-links { font-size: 0.9rem; font-weight: 600; }
+  .project-links.disabled { color: var(--muted); }
+  .project-meta { font-size: 0.82rem; color: var(--muted); }
 
   .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
 
@@ -94,45 +102,20 @@
     font-size: 0.9rem; text-align: center; padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
   }
 
-  @media (max-width: 760px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .nav-links { gap: 14px; font-size: 0.85rem; }
-    .hero { padding: 64px 0 48px; }
-  }
+  .timeline-note { font-size: .82rem; color: var(--muted); margin: 0 0 14px; }
 
-  .sub-heading { font-size: 1.1rem; margin: 48px 0 16px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-  .exp-list { display: grid; gap: 22px; }
-  .exp-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
-  .exp-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
-  .exp-company { margin: 0; font-size: 1.3rem; letter-spacing: -0.01em; }
-  .exp-role { margin: 4px 0 0; color: var(--accent-2); font-weight: 600; font-size: 0.98rem; }
-  .exp-role-muted { color: var(--muted); font-weight: 500; }
-  .exp-date { font-size: 0.85rem; color: var(--text); white-space: nowrap; background: var(--surface-2); border: 1px solid var(--border); padding: 4px 12px; border-radius: 999px; }
-  .exp-card ul { margin: 18px 0 0; padding-left: 20px; color: var(--muted); font-size: 0.95rem; display: grid; gap: 8px; }
-  .exp-sub { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
-  .exp-sub .exp-role { margin: 0; }
-  .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-  .mini-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
-  .mini-company { margin: 0; font-size: 1rem; }
-
-  .about-p { color: var(--muted); margin: 0 0 16px; }
-  .tagline { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; color: var(--text); }
-  .sub-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--accent-2); font-weight: 600; margin: 20px 0 6px; }
-  .feature { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-top: 1px solid var(--border); }
-  .feature strong { display: block; font-size: .98rem; }
-  .feature span { color: var(--muted); font-size: .88rem; }
-  .icon { width: 40px; height: 40px; border-radius: 10px; background: var(--surface-2); display: grid; place-items: center; color: var(--accent-2); flex-shrink: 0; }
-  .icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-
-  .left-col { display: grid; gap: 24px; align-content: start; }
-  .about-grid { align-items: start; }
-  .exp-panel { position: sticky; top: 96px; }
   .tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .tile { display: flex; gap: 12px; align-items: flex-start; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
   .tile strong { display: block; font-size: .95rem; margin-bottom: 2px; }
   .tile span { color: var(--muted); font-size: .85rem; line-height: 1.45; }
   .tile-wide { grid-column: 1 / -1; }
+  .icon { width: 40px; height: 40px; border-radius: 10px; background: var(--surface); display: grid; place-items: center; color: var(--accent-2); flex-shrink: 0; }
+  .icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .stat-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+  .about-p { color: var(--muted); margin: 0 0 16px; }
+  .tagline { font-size: 1.2rem; font-weight: 600; margin: 0 0 8px; color: var(--text); }
+
   .tl { position: relative; display: grid; gap: 14px; padding-left: 26px; }
   .tl::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; border-radius: 2px; background: linear-gradient(var(--accent), var(--accent-2)); }
   .tl-item { position: relative; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
@@ -142,7 +125,11 @@
   .tl-co { color: var(--muted); font-size: .9rem; }
   .tl-loc { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: .82rem; margin-top: 8px; }
   .tl-loc svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
   @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 14px; font-size: 0.85rem; }
+    .hero { padding: 64px 0 48px; }
     .exp-panel { position: static; }
     .tile-grid { grid-template-columns: 1fr; }
   }
@@ -169,7 +156,6 @@
     <span class="badge">Open to Senior Data Analyst and Data Scientist roles</span>
     <h1>Turning messy data into <span class="gradient-text">decisions people act on</span></h1>
     <p class="lead">Data analyst and data scientist with 4+ years of experience across product analytics, healthcare, and applied data science. My work includes designing experiments, building reliable data models with SQL and dbt, developing Python-based analytical solutions, and exploring how LLMs can make data more accessible through natural language tools.</p>
-    <!-- I design A/B tests, develop trusted dbt, SQL, and Python data models, and build LLM-powered tools that let people ask data questions in plain language. -->
     <div class="cta">
       <a class="btn primary" href="#projects">View projects</a>
       <a class="btn" href="resume.pdf">Download resume</a>
@@ -181,18 +167,17 @@
   <div class="container about-grid">
     <div class="left-col">
       <div class="card">
-      <h3>About me</h3>
-      <p class="about-p">I’m interested in the space between data, technology, and decision-making. My work is about taking complex problems, figuring out what the data can actually tell us, and turning that into something useful.</p>
-      <p class="about-p">Since joining Kooth in 2020, I’ve grown into a Data Analyst/Scientist on the Analytics team. I’ve worked across Product, Marketing, Service Delivery, and Clinical, partnering with teams to understand user behavior, measure product performance, evaluate new ideas, and make better decisions. I enjoy being involved in the entire process, from figuring out the right question to building the data foundations, doing the analysis, and communicating what it means.</p>
-      <p class="about-p">My background brings together three areas I truly enjoy: product analytics and experimentation, statistical analysis and data science, and building reliable data infrastructure. That means everything from designing and evaluating experiments to developing reusable data models, exploring behavioral patterns, and applying statistical methods to real-world problems. More recently, I’ve been exploring how LLMs and agentic workflows can make data more accessible and help automate parts of the analytical process.</p>
-      <p class="about-p">Before moving into product analytics, I worked in healthcare analytics and public health research, including Medicare claims analysis at Qlarant and research at Cook County Health. I also hold an MPH in Epidemiology and Biostatistics. That background has shaped how I approach analytical problems: with an emphasis on good study design, understanding bias, and being thoughtful about what the data can and cannot tell us.</p>
-      <p class="about-p" style="margin-bottom:0">Ultimately, I enjoy working on problems where good analysis can change how a product works, how a team operates, or how a decision gets made.</p>
-    </div>
+        <h3>About me</h3>
+        <p class="about-p">I’m interested in the space between data, technology, and decision-making. My work is about taking complex problems, figuring out what the data can actually tell us, and turning that into something useful.</p>
+        <p class="about-p">Since joining Kooth in 2020, I’ve grown into a Data Analyst/Scientist on the Analytics team. I’ve worked across Product, Marketing, Service Delivery, and Clinical, partnering with teams to understand user behavior, measure product performance, evaluate new ideas, and make better decisions. I enjoy being involved in the entire process, from figuring out the right question to building the data foundations, doing the analysis, and communicating what it means.</p>
+        <p class="about-p">My background brings together three areas I truly enjoy: product analytics and experimentation, statistical analysis and data science, and building reliable data infrastructure. That means everything from designing and evaluating experiments to developing reusable data models, exploring behavioral patterns, and applying statistical methods to real-world problems. More recently, I’ve been exploring how LLMs and agentic workflows can make data more accessible and help automate parts of the analytical process.</p>
+        <p class="about-p">Before moving into product analytics, I worked in healthcare analytics and public health research, including Medicare claims analysis at Qlarant and research at Cook County Health. I also hold an MPH in Epidemiology and Biostatistics. That background has shaped how I approach analytical problems: with an emphasis on good study design, understanding bias, and being thoughtful about what the data can and cannot tell us.</p>
+        <p class="about-p" style="margin-bottom:0">Ultimately, I enjoy working on problems where good analysis can change how a product works, how a team operates, or how a decision gets made.</p>
+      </div>
       <div class="card">
         <h3>The work I enjoy</h3>
         <p class="tagline">Data, technology, and better decisions.</p>
         <p class="muted" style="margin:0 0 18px; font-size:.92rem">I turn complex data and business problems into insights, tools, and decisions that have a practical impact.</p>
-        <!-- <p class="sub-label">The work I enjoy</p> -->
         <div class="tile-grid">
           <div class="tile"><div class="icon"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/></svg></div><div><strong>Experimentation</strong><span>Testing ideas and measuring impact.</span></div></div>
           <div class="tile"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><div><strong>Data science</strong><span>Finding patterns and building analytical solutions.</span></div></div>
@@ -207,6 +192,7 @@
         </div>
       </div>
     </div>
+
     <div class="card exp-panel" id="experience">
       <h3>Experience</h3>
       <div class="tl">
@@ -228,7 +214,6 @@
           <div class="tl-co">University of Illinois Chicago</div>
           <div class="tl-loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Chicago, IL</span></div>
         </div>
-      
         <div class="tl-item">
           <div class="tl-date">2020 to 2022</div>
           <div class="tl-role">MPH, Epidemiology &amp; Biostatistics</div>
@@ -254,10 +239,10 @@
 
       <article class="project">
         <span class="project-tag">LLMs · Natural language querying</span>
-        <h3>Natural Language to SQL for E-commerce Data</h3>
-        <p>Turns plain-English business questions into BigQuery SQL, validates each query with a dry run, and returns results with the generated SQL shown. Accuracy is measured against hand-verified answers.</p>
-        <div class="chips"><span class="chip">Python</span><span class="chip">BigQuery</span><span class="chip">LLM API</span><span class="chip">Streamlit</span></div>
-        <a class="project-links" href="#">View project →</a>
+        <h3>Natural Language Query for E-commerce Data</h3>
+        <p>Ask business questions in plain English and get back SQL, tables, and charts. Google Gemini writes the SQL, which runs read-only against a SQLite database built from the Olist Brazilian e-commerce dataset. Every answer shows the query that produced it, and the app retries and falls back to other models when the API is busy.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Gemini API</span><span class="chip">SQLite</span><span class="chip">Streamlit</span><span class="chip">Plotly</span></div>
+        <a class="project-links" href="https://github.com/hassanhassan5198/Ecommerce-Natural-Language-Query-to-SQL" target="_blank" rel="noopener">View on GitHub →</a>
       </article>
 
       <article class="project">
@@ -265,7 +250,7 @@
         <h3>Agentic Analytics Assistant</h3>
         <p>An agent that plans an analysis, runs read-only SQL as tools, checks its own numbers for impossible values, and writes a report. Every tool call is logged to a trace so the reasoning can be reviewed.</p>
         <div class="chips"><span class="chip">Agents</span><span class="chip">Tool use</span><span class="chip">Python</span><span class="chip">SQL</span></div>
-        <a class="project-links" href="#">View project →</a>
+        <span class="project-links disabled">Coming soon</span>
       </article>
 
       <article class="project">
@@ -273,7 +258,7 @@
         <h3>A/B Test Analysis with a Stakeholder Memo</h3>
         <p>Checks sample ratio mismatch, computes retention lift with confidence intervals, runs a power analysis, and breaks results down by player segment. The findings are written up as a one-page recommendation.</p>
         <div class="chips"><span class="chip">Hypothesis testing</span><span class="chip">Bootstrap</span><span class="chip">Power analysis</span><span class="chip">Python</span></div>
-        <a class="project-links" href="#">View project →</a>
+        <span class="project-links disabled">Coming soon</span>
       </article>
 
       <article class="project">
@@ -281,7 +266,7 @@
         <h3>dbt Data Models with Quality Tests</h3>
         <p>Staging and mart models built in dbt on BigQuery, with documented business logic, data quality tests, and a medallion-style layout that turns raw orders and users into trusted gold-layer tables.</p>
         <div class="chips"><span class="chip">dbt</span><span class="chip">BigQuery</span><span class="chip">SQL</span><span class="chip">Data quality</span></div>
-        <a class="project-links" href="#">View project →</a>
+        <span class="project-links disabled">Coming soon</span>
       </article>
 
     </div>
@@ -318,7 +303,7 @@
     <h2 class="section-title">Let's talk</h2>
     <p class="lead">Open to data analyst and data scientist roles. Email is the fastest way to reach me.</p>
     <a class="btn primary" href="mailto:hassan5198@gmail.com">hassan5198@gmail.com</a>
-    <p style="margin-top:20px"><a href="https://linkedin.com/in/hassan-hassan-657a53155">LinkedIn</a></p>
+    <p style="margin-top:20px"><a href="https://linkedin.com/in/hassan-hassan-657a53155" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/hassanhassan5198" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </section>
 
